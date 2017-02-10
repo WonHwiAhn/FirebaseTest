@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "903763137570",
+    "firebase_url": "https://androidauthentication-c2198.firebaseio.com",
+    "project_id": "androidauthentication-c2198",
+    "storage_bucket": "androidauthentication-c2198.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903763137570:android:5a4bf9577e46448d",
+        "android_client_info": {
+          "package_name": "com.example.ahn.firebaseauthentication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903763137570-nq2uqfvfgv0818i1efmruv0qll8bs7vu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV3kUU6lQpUmAi76nWYeagLIBoez1ePyg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903763137570-nq2uqfvfgv0818i1efmruv0qll8bs7vu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

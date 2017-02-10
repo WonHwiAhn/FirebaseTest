@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_dash_board">
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/firebase"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:layout_marginLeft="110dp"
+            android:id="@+id/dashboard_welcome"
+            android:text="Welcome, user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textColor="@color/colorPrimary"/>
+
+        <Button
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/EText01"
+            android:id="@+id/dashboard_btn_logout"
+            android:text="Logout"
+            android:background="#263238"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <!--<android.support.design.widget.TextInputLayout
+        android:layout_below="@+id/dashboard_welcome"
+        android:id="@+id/dashboard_input_new_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/dashboard_new_password"
+            android:hint="Enter new password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TextInputLayout>-->
+
+    <Button
+        android:textSize="15dp"
+        android:text="채팅방 생성"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/btn01" />
+
+    <EditText
+        android:background="@drawable/border"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:textSize="15dp"
+        android:hint="메세지를 입력하세요."
+        android:ems="10"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/EText01"
+        android:layout_toStartOf="@+id/btn01"
+        android:layout_below="@+id/LView01" />
+
+    <!--<Button
+        android:layout_below="@+id/dashboard_input_new_password"
+        android:id="@+id/dashboard_btn_change_pass"
+        android:text="Change Password"
+        android:background="#263238"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />-->
+
+    <ListView
+        android:id="@+id/LView01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/btn01"
+        android:layout_below="@+id/linearLayout" />
+</RelativeLayout>
