@@ -19,7 +19,7 @@
         android:id="@+id/linearLayout">
 
         <TextView
-            android:layout_marginLeft="110dp"
+            android:layout_marginLeft="0dp"
             android:id="@+id/dashboard_welcome"
             android:text="Welcome, user"
             android:layout_width="wrap_content"

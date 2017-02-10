@@ -15,9 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DashBoard" />
+        <activity android:name=".DashBoard"
+                  android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ForgotPassword" />
-        <activity android:name=".Chat_Room" />
+        <activity android:name=".Chat_Room"
+                  android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".SignUp"></activity>
     </application>
 

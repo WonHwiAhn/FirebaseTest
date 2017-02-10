@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -53,6 +54,10 @@ import java.util.Set;
             protected void onCreate(Bundle savedInstanceState){
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_dash_board);
+
+                getWindow().getAttributes().width = WindowManager.LayoutParams.MATCH_PARENT;
+
+                getWindow().getAttributes().height = WindowManager.LayoutParams.MATCH_PARENT;
 
                 txtWelcome = (TextView) findViewById(R.id.dashboard_welcome);
                 //input_new_password = (EditText) findViewById(R.id.dashboard_new_password);

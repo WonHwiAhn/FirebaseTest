@@ -21,13 +21,18 @@
         android:id="@+id/btn01"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="TextView"
+    <ScrollView
+        android:id="@+id/SView01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/TView01"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/EText01" />
+        android:layout_above="@+id/EText01">
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/TView01"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/EText01" />
+    </ScrollView>
 </RelativeLayout>

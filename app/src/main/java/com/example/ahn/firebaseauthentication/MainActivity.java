@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getWindow().getAttributes().width = WindowManager.LayoutParams.MATCH_PARENT;
+
+        getWindow().getAttributes().height = WindowManager.LayoutParams.MATCH_PARENT;
 
         //View
         btnLogin = (Button) findViewById(R.id.login_btn_login);
@@ -101,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                                 snackBar.show();
                             }
                         }else{
-                            Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(MainActivity.this, DashBoard.class));
                         }
                     }

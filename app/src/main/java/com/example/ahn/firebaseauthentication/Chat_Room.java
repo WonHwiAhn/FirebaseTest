@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -20,6 +21,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import static com.example.ahn.firebaseauthentication.R.id.TView01;
+
 /**
  * Created by Ahn on 2017-02-08.
  */
@@ -28,6 +31,7 @@ public class Chat_Room extends AppCompatActivity {
     private Button btn_send_msg;
     private EditText input_msg;
     private TextView chat_conversation;
+    private ScrollView SView01;
 
     private String user_name, room_name, temp_key;
     private DatabaseReference root;
@@ -39,13 +43,29 @@ public class Chat_Room extends AppCompatActivity {
 
         btn_send_msg = (Button) findViewById(R.id.btn01);
         input_msg = (EditText) findViewById(R.id.EText01);
-        chat_conversation = (TextView) findViewById(R.id.TView01);
+        chat_conversation = (TextView) findViewById(TView01);
+        SView01 = (ScrollView) findViewById(R.id.SView01);
 
         user_name = getIntent().getExtras().get("user_name").toString();
         room_name = getIntent().getExtras().get("room_name").toString();
         setTitle(" Room - " + room_name);
 
+
         root = FirebaseDatabase.getInstance().getReference().child(room_name);
+        
+        // 스크롤 아래 포커스 주는 법1
+        SView01.post(new Runnable() {
+            @Override
+            public void run() {
+                SView01.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
+
+        /*SView01.post(new Runnable(){
+            public void run() {
+                SView01.scrollTo(0, 200);
+            }
+        });*/
 
         btn_send_msg.setOnClickListener(new View.OnClickListener() {
             @Override
