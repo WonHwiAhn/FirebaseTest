@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -13,12 +14,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
     Button btnLogin;
@@ -26,8 +32,11 @@ public class MainActivity extends AppCompatActivity {
     TextView btnSignup, btnForgotPass;
 
     RelativeLayout activity_main;
+    String user = "user";
 
     private FirebaseAuth auth;
+
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("user");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, SignUp.class));
                 finish();
             }else if(view.getId() == R.id.login_btn_login){
-                Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_LONG).show();
                 loginUser(input_email.getText().toString(), input_password.getText().toString());
             }
         }
@@ -106,10 +114,31 @@ public class MainActivity extends AppCompatActivity {
                                 snackBar.show();
                             }
                         }else{
-                            startActivity(new Intent(MainActivity.this, DashBoard.class));
+                            Map<String, Object> user = new HashMap<String, Object>();
+                            if(user.containsValue(input_email.getText().toString())){
+                                //아이디 중복 체크
+                                Snackbar snackBar = Snackbar.make(activity_main, "아이디가 이미 로그인되있습니다.", Snackbar.LENGTH_SHORT);
+                                snackBar.show();
+                            }else {
+                                user.put(GetDevicesUUID(getApplicationContext()), input_email.getText().toString());
+                                //user.remove(GetDevicesUUID(getApplicationContext()));  삭제할 때 맵을 이용해서 삭제
+                                root.updateChildren(user);
+                                Snackbar snackBar = Snackbar.make(activity_main, "로그인 성공!", Snackbar.LENGTH_SHORT);
+                                snackBar.show();
+                                startActivity(new Intent(MainActivity.this, DashBoard.class));
+                            }
                         }
                     }
                 });
     }
-
+    private String GetDevicesUUID(Context mContext){
+        final TelephonyManager tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
+        final String tmDevice, tmSerial, androidId;
+        tmDevice = "" + tm.getDeviceId();
+        tmSerial = "" + tm.getSimSerialNumber();
+        androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+        UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
+        String deviceId = deviceUuid.toString();
+        return deviceId;
+    }
 }

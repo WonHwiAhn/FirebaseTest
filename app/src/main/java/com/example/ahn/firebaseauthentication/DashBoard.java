@@ -48,7 +48,7 @@ import java.util.Set;
             private ListView listView;
             private ArrayAdapter<String> arrayAdapter;
             private ArrayList<String> list_of_rooms = new ArrayList<>();
-            private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
+            private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("chatroom");
 /*******************************************************/
 
             protected void onCreate(Bundle savedInstanceState){
