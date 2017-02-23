@@ -22,10 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by Ahn on 2017-02-01.
@@ -96,14 +95,15 @@ import java.util.Set;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Set<String> set = new HashSet<String>();
+                List<String> set = new ArrayList<String>();
                 Iterator i = dataSnapshot.getChildren().iterator();
 
-                while(i.hasNext()){
-                    set.add(((DataSnapshot)i.next()).getKey());
-                }
                 list_of_rooms.clear();
-                list_of_rooms.addAll(set);
+
+                while(i.hasNext()){
+                    //set.add(((DataSnapshot)i.next()).getKey());
+                    list_of_rooms.add(((DataSnapshot)i.next()).getKey());  //set
+                }
 
                 arrayAdapter.notifyDataSetChanged();
             }
