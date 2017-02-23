@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="clipboard_items">
+        <item>복사</item>
+        <item>붙여넣기</item>
+    </string-array>
+</resources>

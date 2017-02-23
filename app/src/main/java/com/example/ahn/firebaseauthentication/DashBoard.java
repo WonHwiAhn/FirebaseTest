@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,10 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by Ahn on 2017-02-01.
@@ -47,12 +47,16 @@ import java.util.Set;
             private ListView listView;
             private ArrayAdapter<String> arrayAdapter;
             private ArrayList<String> list_of_rooms = new ArrayList<>();
-            private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
+            private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("chatroom");
 /*******************************************************/
 
             protected void onCreate(Bundle savedInstanceState){
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_dash_board);
+
+                getWindow().getAttributes().width = WindowManager.LayoutParams.MATCH_PARENT;
+
+                getWindow().getAttributes().height = WindowManager.LayoutParams.MATCH_PARENT;
 
                 txtWelcome = (TextView) findViewById(R.id.dashboard_welcome);
                 //input_new_password = (EditText) findViewById(R.id.dashboard_new_password);
@@ -91,14 +95,15 @@ import java.util.Set;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Set<String> set = new HashSet<String>();
+                List<String> set = new ArrayList<String>();
                 Iterator i = dataSnapshot.getChildren().iterator();
 
-                while(i.hasNext()){
-                    set.add(((DataSnapshot)i.next()).getKey());
-                }
                 list_of_rooms.clear();
-                list_of_rooms.addAll(set);
+
+                while(i.hasNext()){
+                    //set.add(((DataSnapshot)i.next()).getKey());
+                    list_of_rooms.add(((DataSnapshot)i.next()).getKey());  //set
+                }
 
                 arrayAdapter.notifyDataSetChanged();
             }
